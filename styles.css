@@ -41,8 +41,10 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.12;
-  background-image: linear-gradient(90deg, transparent 0, transparent 49%, rgba(214,162,74,0.16) 50%, transparent 51%, transparent 100%);
+  opacity: 0.08;
+  background-image:
+    radial-gradient(circle at center, rgba(214,162,74,0.16) 0 1px, transparent 1px),
+    linear-gradient(90deg, transparent 0, transparent 49%, rgba(214,162,74,0.12) 50%, transparent 51%, transparent 100%);
   background-size: 120px 120px;
   mask-image: radial-gradient(circle at center, black 20%, transparent 75%);
 }
@@ -80,6 +82,47 @@ h3 { font-size: 1.75rem; }
 .sanskrit {
   font-family: 'Noto Serif Devanagari', serif;
   letter-spacing: 0.08em;
+}
+.section-ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  color: rgba(239,205,143,0.78);
+}
+.section-ornament::before,
+.section-ornament::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(214,162,74,0.45), transparent);
+}
+.section-ornament span {
+  font-size: 1rem;
+  letter-spacing: 0.22em;
+}
+.quote-block {
+  border-left: 3px solid rgba(214,162,74,0.55);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--paper);
+  font-size: 1.12rem;
+}
+.kolam-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(239,205,143,0.85);
+  margin: 2rem 0 0;
+  letter-spacing: 0.28em;
+}
+.kolam-divider::before,
+.kolam-divider::after {
+  content: '';
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214,162,74,0.45), transparent);
 }
 
 .site-header {
