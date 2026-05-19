@@ -257,23 +257,28 @@ h3 { font-size: 1.65rem; }
 
 .home-hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.12fr 0.88fr;
   gap: 1.4rem;
   align-items: stretch;
 }
-.home-hero-panel {
-  min-height: 100%;
-}
+.home-hero-panel { min-height: 100%; }
 .home-hero-panel p:last-child { margin-bottom: 0; }
-.home-hero-side {
-  display: grid;
-  gap: 1rem;
-}
+.home-hero-side { display: grid; gap: 1rem; }
 .home-symbol {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.8rem, 10vw, 6.5rem);
-  line-height: 1;
+  font-size: clamp(4.6rem, 11vw, 7.8rem);
+  line-height: 0.92;
   color: var(--ink);
+  letter-spacing: 0.02em;
+  text-shadow: 0 10px 22px rgba(201,146,46,0.16);
+}
+.home-hero-title {
+  font-size: clamp(3.5rem, 8vw, 6.4rem);
+}
+.home-hero-kicker {
+  font-size: 1.08rem;
+  color: var(--ink);
+  max-width: 38rem;
 }
 .home-intro-grid {
   display: grid;
@@ -305,6 +310,29 @@ h3 { font-size: 1.65rem; }
   border: 1px solid rgba(126, 85, 43, 0.1);
 }
 .home-callout p:last-child { margin-bottom: 0; }
+.home-art-wrap {
+  margin-top: 2rem;
+}
+.home-art-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(126, 85, 43, 0.12);
+  box-shadow: 0 28px 60px rgba(45, 29, 16, 0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,248,239,0.88));
+}
+.home-art-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.home-art-caption {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1rem;
+  padding: 1.2rem 1.25rem 1.35rem;
+}
+.home-art-caption p:last-child { margin-bottom: 0; }
 .home-flow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -323,7 +351,7 @@ h3 { font-size: 1.65rem; }
 }
 .home-link-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 1rem;
 }
 .home-link-card {
@@ -337,13 +365,16 @@ h3 { font-size: 1.65rem; }
   margin-bottom: 0.5rem;
   font-size: 1.15rem;
 }
+.home-link-card.next-step {
+  background: linear-gradient(135deg, rgba(201,146,46,0.16), rgba(255,249,241,0.95));
+}
 .home-finale {
   font-size: 1.08rem;
   color: var(--ink);
 }
 
 @media (max-width: 960px) {
-  .footer-wrap, .home-hero-grid, .home-intro-grid, .home-concepts, .home-flow, .home-link-grid {
+  .footer-wrap, .home-hero-grid, .home-intro-grid, .home-concepts, .home-flow, .home-link-grid, .home-art-caption {
     grid-template-columns: 1fr;
   }
   .menu-toggle {
@@ -384,6 +415,7 @@ h3 { font-size: 1.65rem; }
     padding: 1.15rem;
     border-radius: 20px;
   }
+  .home-art-frame { border-radius: 22px; }
   h1 { font-size: clamp(2.7rem, 12vw, 4.2rem); }
   h2 { font-size: clamp(2rem, 8vw, 3rem); }
   p { font-size: 0.98rem; }
