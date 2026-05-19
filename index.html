@@ -18,16 +18,17 @@
       <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">Menu</button>
       <nav class="nav" id="site-nav">
         <div class="nav-group open">
-          <button class="nav-toggle" type="button" aria-expanded="true">Hॐm <span class="nav-caret">▾</span></button>
+          <div class="nav-row">
+            <a class="nav-toplink" href="index.html">Hॐm</a>
+            <button class="nav-toggle" type="button" aria-expanded="true" aria-label="Toggle Hॐm submenu"><span class="nav-caret">▾</span></button>
+          </div>
           <div class="nav-submenu">
-            <a href="index.html">Overview</a>
             <a href="outline.html">Outline</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-toggle" type="button" aria-expanded="false">Yoga of AI <span class="nav-caret">▾</span></button>
-          <div class="nav-submenu">
-            <a href="yoga-of-ai.html">Essay</a>
+          <div class="nav-row">
+            <a class="nav-toplink" href="yoga-of-ai.html">Yoga of AI</a>
           </div>
         </div>
       </nav>
@@ -172,7 +173,9 @@
       });
     }
     document.querySelectorAll('.nav-toggle').forEach((button) => {
-      button.addEventListener('click', () => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         const group = button.closest('.nav-group');
         const isOpen = group.classList.toggle('open');
         button.setAttribute('aria-expanded', String(isOpen));
