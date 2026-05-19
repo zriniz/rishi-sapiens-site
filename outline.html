@@ -17,7 +17,19 @@
       <a class="brand" href="index.html" aria-label="Rishi Sapiens home"><img class="brand-logo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCt-muWnFRcSK0Qu-XF03dbqDuLFJ90Zomkongddk_I-hXf5Eg8L5LLSV86d326ki-USraN7_1R4JeQ8D-NIq5Dm-3HxRpRGza2fYQt3Tka9i9pm-dtX7P7yHOEfZ2HagtTiVHZ0uTvLDMkUx_sW9dSZ7x0ZlyYi2KWwQqfcJLjIlB0dzZaCGdO=w16383" alt="Rishi Sapiens logo" /></a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">Menu</button>
       <nav class="nav" id="site-nav">
-        <span>Hॐm</span><a href="yoga-of-ai.html">Yoga of AI</a>
+        <div class="nav-group open">
+          <button class="nav-toggle" type="button" aria-expanded="true">Hॐm <span class="nav-caret">▾</span></button>
+          <div class="nav-submenu">
+            <a href="index.html">Overview</a>
+            <a href="outline.html">Outline</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-toggle" type="button" aria-expanded="false">Yoga of AI <span class="nav-caret">▾</span></button>
+          <div class="nav-submenu">
+            <a href="yoga-of-ai.html">Essay</a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -86,7 +98,24 @@
   </main>
 
   <div class="pattern-band-bottom"></div>
-  <footer class="site-footer"><div class="container footer-wrap"><div class="footer-col"><h4>Vision</h4><p>Rishi Sapiens brings together yoga, consciousness, story, and intelligent technology in a culturally rooted Indian frame.</p></div><div class="footer-col"><h4>Key Pages</h4><a href="index.html">Hॐm</a><a href="yoga-of-ai.html">Yoga of AI</a></div><div class="footer-col"><h4>Contact</h4><a href="contact.html">Contact</a><a href="mailto:RishiSapiens@gmail.com">RishiSapiens@gmail.com</a></div></div><div class="container footer-note">Rishi Sapiens • Yoga of consciousness for the age of AI</div></footer>
-  <script src="script.js"></script>
+  <footer class="site-footer"><div class="container footer-wrap"><div class="footer-col"><h4>Vision</h4><p>Rishi Sapiens brings together yoga, consciousness, story, and intelligent technology in a culturally rooted Indian frame.</p></div><div class="footer-col"><h4>Key Pages</h4><a href="index.html">Hॐm</a><a href="outline.html">↳ Outline</a><a href="yoga-of-ai.html">Yoga of AI</a></div><div class="footer-col"><h4>Contact</h4><a href="contact.html">Contact</a><a href="mailto:RishiSapiens@gmail.com">RishiSapiens@gmail.com</a></div></div><div class="container footer-note">Rishi Sapiens • Yoga of consciousness for the age of AI</div></footer>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#site-nav');
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    document.querySelectorAll('.nav-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const group = button.closest('.nav-group');
+        const isOpen = group.classList.toggle('open');
+        button.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+  </script>
 </body>
 </html>
