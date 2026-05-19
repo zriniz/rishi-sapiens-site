@@ -47,7 +47,7 @@
 
   <main class="section">
     <div class="container essay-layout reveal visible">
-      <aside class="essay-toc">
+      <aside class="essay-toc" id="essay-toc">
         <div class="essay-toc-title">Reading Guide</div>
         <div class="essay-toc-list">
           <a class="essay-toc-item active" href="#prologue" data-section-link="prologue"><span class="essay-toc-item-head"><span class="essay-toc-icon">✦</span><strong>Prologue</strong></span><span>The page opens with the civilizational and existential stakes of artificial intelligence.</span></a>
@@ -89,16 +89,26 @@
       });
     });
 
+    const toc = document.getElementById('essay-toc');
     const tocLinks = Array.from(document.querySelectorAll('[data-section-link]'));
     const essaySections = Array.from(document.querySelectorAll('[data-section]'));
 
-    if (tocLinks.length && essaySections.length) {
+    if (toc && tocLinks.length && essaySections.length) {
       const activateSection = (id) => {
         tocLinks.forEach((link) => {
           const isActive = link.dataset.sectionLink === id;
           link.classList.toggle('active', isActive);
           if (isActive) {
-            link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+            const linkTop = link.offsetTop;
+            const linkBottom = linkTop + link.offsetHeight;
+            const visibleTop = toc.scrollTop;
+            const visibleBottom = visibleTop + toc.clientHeight;
+            if (linkTop < visibleTop + 12 || linkBottom > visibleBottom - 12) {
+              toc.scrollTo({
+                top: Math.max(0, linkTop - toc.clientHeight * 0.35),
+                behavior: 'smooth'
+              });
+            }
           }
         });
       };
@@ -107,15 +117,21 @@
       if (currentSection) activateSection(currentSection);
 
       const updateActiveSection = () => {
-        const viewportOffset = window.innerHeight * 0.22;
+        const triggerLine = window.innerHeight * 0.3;
         let bestSection = essaySections[0]?.dataset.section;
 
         for (const section of essaySections) {
           const rect = section.getBoundingClientRect();
-          if (rect.top - viewportOffset <= 0) {
+          if (rect.top <= triggerLine) {
             bestSection = section.dataset.section;
-          } else {
-            break;
+          }
+        }
+
+        const lastSection = essaySections[essaySections.length - 1];
+        if (lastSection) {
+          const lastRect = lastSection.getBoundingClientRect();
+          if (lastRect.top <= window.innerHeight && lastRect.bottom <= window.innerHeight + 120) {
+            bestSection = lastSection.dataset.section;
           }
         }
 
