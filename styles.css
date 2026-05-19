@@ -137,7 +137,7 @@ h3 { font-size: 1.65rem; }
   font: inherit;
 }
 
-.page-hero { padding: 7rem 0 3rem; }
+.page-hero { padding: 7rem 0 2.2rem; }
 .hero-band {
   position: relative;
   border: 1px solid var(--line);
@@ -248,49 +248,56 @@ h3 { font-size: 1.65rem; }
   opacity: 1;
   transform: translateY(0);
 }
-.essay-section {
-  padding: 1.8rem 0 2.3rem;
-  border-top: 1px solid rgba(126, 85, 43, 0.12);
-  scroll-margin-top: 7.5rem;
-}
-.essay-section:first-child { border-top: none; padding-top: 0; }
 
-.home-hero-grid {
-  display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 1.4rem;
-  align-items: stretch;
-}
-.home-hero-panel { min-height: 100%; }
-.home-hero-panel p:last-child { margin-bottom: 0; }
-.home-hero-side { display: grid; gap: 1rem; }
-.home-symbol {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4.6rem, 11vw, 7.8rem);
-  line-height: 0.92;
-  color: var(--ink);
-  letter-spacing: 0.02em;
-  text-shadow: 0 10px 22px rgba(201,146,46,0.16);
+.home-hero-minimal {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  text-align: center;
 }
 .home-hero-title {
-  font-size: clamp(3.5rem, 8vw, 6.4rem);
+  font-size: clamp(3.8rem, 9vw, 6.7rem);
 }
-.home-hero-kicker {
+.home-hero-subtitle {
   font-size: 1.08rem;
   color: var(--ink);
-  max-width: 38rem;
 }
-.home-intro-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 1.5rem;
-  align-items: start;
+.home-art-wrap {
+  margin-top: 1.4rem;
+}
+.home-art-frame {
+  position: relative;
+  overflow: hidden;
+  width: min(920px, 100%);
+  margin: 0 auto;
+  border-radius: 30px;
+  border: 1px solid rgba(126, 85, 43, 0.12);
+  box-shadow: 0 28px 60px rgba(45, 29, 16, 0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,248,239,0.88));
+}
+.home-art-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.home-art-caption {
+  text-align: center;
+  padding: 1rem 1.2rem 1.2rem;
+}
+.home-art-caption p {
+  margin: 0;
+  color: var(--ink);
 }
 .home-bullets {
   margin: 0.25rem 0 0 1.15rem;
   padding: 0;
 }
 .home-bullets li { margin-bottom: 0.4rem; color: var(--ink-soft); }
+.home-intro-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
 .home-concepts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -305,34 +312,6 @@ h3 { font-size: 1.65rem; }
   font-size: 1.45rem;
   margin-bottom: 0.55rem;
 }
-.home-callout {
-  background: linear-gradient(135deg, rgba(201,146,46,0.12), rgba(44,112,116,0.08));
-  border: 1px solid rgba(126, 85, 43, 0.1);
-}
-.home-callout p:last-child { margin-bottom: 0; }
-.home-art-wrap {
-  margin-top: 2rem;
-}
-.home-art-frame {
-  position: relative;
-  overflow: hidden;
-  border-radius: 30px;
-  border: 1px solid rgba(126, 85, 43, 0.12);
-  box-shadow: 0 28px 60px rgba(45, 29, 16, 0.14);
-  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,248,239,0.88));
-}
-.home-art-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.home-art-caption {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 1rem;
-  padding: 1.2rem 1.25rem 1.35rem;
-}
-.home-art-caption p:last-child { margin-bottom: 0; }
 .home-flow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -368,13 +347,9 @@ h3 { font-size: 1.65rem; }
 .home-link-card.next-step {
   background: linear-gradient(135deg, rgba(201,146,46,0.16), rgba(255,249,241,0.95));
 }
-.home-finale {
-  font-size: 1.08rem;
-  color: var(--ink);
-}
 
 @media (max-width: 960px) {
-  .footer-wrap, .home-hero-grid, .home-intro-grid, .home-concepts, .home-flow, .home-link-grid, .home-art-caption {
+  .footer-wrap, .home-intro-grid, .home-concepts, .home-flow, .home-link-grid {
     grid-template-columns: 1fr;
   }
   .menu-toggle {
@@ -403,7 +378,7 @@ h3 { font-size: 1.65rem; }
     width: 100%;
   }
   .nav a:hover { background: rgba(201,146,46,0.07); }
-  .page-hero { padding: 6.2rem 0 2.8rem; }
+  .page-hero { padding: 6.2rem 0 2.4rem; }
   .section { padding: 4.4rem 0; }
 }
 
@@ -411,7 +386,7 @@ h3 { font-size: 1.65rem; }
   .container, .narrow { width: min(100% - 1.1rem, 1160px); }
   .nav-wrap { padding: 0.72rem 0; }
   .brand-logo { height: 38px; }
-  .hero-band, .card, .mini-card, .home-intro-panel, .concept-card, .home-callout, .home-link-card, .home-flow-step {
+  .hero-band, .card, .mini-card, .home-intro-panel, .concept-card, .home-link-card, .home-flow-step {
     padding: 1.15rem;
     border-radius: 20px;
   }
