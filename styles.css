@@ -250,16 +250,21 @@ h3 { font-size: 1.65rem; }
 }
 
 .home-hero-minimal {
-  width: min(760px, 100%);
+  width: min(860px, 100%);
   margin: 0 auto;
   text-align: center;
 }
 .home-hero-title {
-  font-size: clamp(3.8rem, 9vw, 6.7rem);
+  font-size: clamp(3.2rem, 8vw, 5.8rem);
+  line-height: 0.98;
+  margin-bottom: 0.5rem;
 }
 .home-hero-subtitle {
-  font-size: 1.08rem;
-  color: var(--ink);
+  font-size: 1rem;
+  color: var(--saffron);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0;
 }
 .home-art-wrap {
   margin-top: 1.4rem;
