@@ -88,19 +88,57 @@
         button.setAttribute('aria-expanded', String(isOpen));
       });
     });
-    const tocLinks = document.querySelectorAll('[data-section-link]');
-    const essaySections = document.querySelectorAll('[data-section]');
-    if (tocLinks.length && essaySections.length && 'IntersectionObserver' in window) {
+
+    const tocLinks = Array.from(document.querySelectorAll('[data-section-link]'));
+    const essaySections = Array.from(document.querySelectorAll('[data-section]'));
+
+    if (tocLinks.length && essaySections.length) {
       const activateSection = (id) => {
         tocLinks.forEach((link) => {
-          link.classList.toggle('active', link.dataset.sectionLink === id);
+          const isActive = link.dataset.sectionLink === id;
+          link.classList.toggle('active', isActive);
+          if (isActive) {
+            link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+          }
         });
       };
-      const observer = new IntersectionObserver((entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length) activateSection(visible[0].target.dataset.section);
-      }, { rootMargin: '-20% 0px -55% 0px', threshold: [0.2, 0.35, 0.5, 0.7] });
-      essaySections.forEach((section) => observer.observe(section));
+
+      let currentSection = essaySections[0]?.dataset.section;
+      if (currentSection) activateSection(currentSection);
+
+      const updateActiveSection = () => {
+        const viewportOffset = window.innerHeight * 0.22;
+        let bestSection = essaySections[0]?.dataset.section;
+
+        for (const section of essaySections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top - viewportOffset <= 0) {
+            bestSection = section.dataset.section;
+          } else {
+            break;
+          }
+        }
+
+        if (bestSection && bestSection !== currentSection) {
+          currentSection = bestSection;
+          activateSection(bestSection);
+        }
+      };
+
+      let ticking = false;
+      const requestUpdate = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateActiveSection();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      requestUpdate();
     }
   </script>
 </body>
